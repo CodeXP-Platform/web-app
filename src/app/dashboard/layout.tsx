@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { paths } from "@/lib/paths";
 import { Button } from "@/components/ui/button";
-import { SidebarNav } from "./SidebarNav";
+import { SidebarNav } from "@/components/dasboard/sidebar-nav";
 
 export default function DashboardLayout({
     children,

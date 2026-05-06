@@ -3,7 +3,7 @@ import { Challenge } from "./types";
 
 export class ChallengesController {
     public static async getChallenges() {
-        const response = await http.get<Challenge[]>(`/challenges');
+        const response = await http.get<Challenge[]>(`/challenges`);
         return response.data;
     }
     public static async getChallengeById(challengeId: string) {}
