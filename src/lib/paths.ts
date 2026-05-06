@@ -8,5 +8,7 @@ export const paths = {
     root: "/dashboard",
     challenges: "/dashboard/challenges",
     profile: "/dashboard/profile",
+    profileEdit: "/dashboard/profile/edit",
+    support: "/dashboard/support",
   },
 } as const;

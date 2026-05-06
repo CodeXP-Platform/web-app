@@ -16,7 +16,12 @@ export default function ProfilePage() {
                   <h1 className="text-3xl font-bold text-white tracking-tight">Alex Developer</h1>
                   <Badge variant="outline" className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 font-bold uppercase tracking-wider text-[10px] w-fit mx-auto md:mx-0">Level 42 Operator</Badge>
                </div>
-               <p className="text-zinc-400 text-sm">Joined May 2026 • Full-Stack Focus</p>
+               <p className="text-zinc-400 text-sm mb-4">Joined May 2026 • Full-Stack Focus</p>
+               <div className="flex justify-center md:justify-start">
+                  <a href="/dashboard/profile/edit" className="inline-flex items-center justify-center rounded-md text-xs font-medium bg-white/5 hover:bg-white/10 border border-white/10 text-white h-8 px-4 transition-colors">
+                     Edit Profile
+                  </a>
+               </div>
             </div>
          </div>
       </div>
