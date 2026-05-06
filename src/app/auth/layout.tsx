@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { paths } from "@/lib/paths";
 
 export default function AuthLayout({
   children,
@@ -8,7 +9,7 @@ export default function AuthLayout({
   return (
     <div className="min-h-screen bg-[#0a0a0c] text-zinc-100 font-sans selection:bg-purple-500/30 flex flex-col relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-10">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href={paths.home} className="flex items-center gap-2">
           <div className="w-3 h-6 bg-blue-500 rounded-sm"></div>
           <span className="text-xl font-semibold tracking-tight text-white">
             CodeXP

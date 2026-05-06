@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { paths } from "@/lib/paths";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -27,12 +28,14 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <Link href="#" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+          <Link href={paths.auth.login} className="hidden md:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">
             Log In
           </Link>
-          <Button className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-md px-5 h-9 text-sm font-medium">
-            Get Started
-          </Button>
+          <Link href={paths.auth.register}>
+            <Button className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-md px-5 h-9 text-sm font-medium">
+              Get Started
+            </Button>
+          </Link>
         </div>
       </nav>
 
@@ -61,15 +64,19 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-            <Button className="bg-white text-black hover:bg-zinc-200 h-12 px-8 text-base font-semibold rounded-md">
-              Start Building Free
-            </Button>
-            <Button variant="outline" className="h-12 px-8 text-base font-medium rounded-md border-white/10 hover:bg-white/5 text-white bg-transparent">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-                <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
-              </svg>
-              Live Demo
-            </Button>
+            <Link href={paths.auth.register}>
+              <Button className="bg-white text-black hover:bg-zinc-200 h-12 px-8 text-base font-semibold rounded-md">
+                Start Building Free
+              </Button>
+            </Link>
+            <Link href={paths.dashboard.root}>
+              <Button variant="outline" className="h-12 px-8 text-base font-medium rounded-md border-white/10 hover:bg-white/5 text-white bg-transparent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
+                  <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
+                </svg>
+                Live Demo
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -250,9 +257,11 @@ export default function Home() {
            </p>
            
            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-              <Button className="bg-indigo-400 hover:bg-indigo-500 text-black h-12 px-8 text-base font-semibold rounded-md w-full sm:w-auto">
-                Get Started Free
-              </Button>
+              <Link href={paths.auth.register}>
+                <Button className="bg-indigo-400 hover:bg-indigo-500 text-black h-12 px-8 text-base font-semibold rounded-md w-full sm:w-auto">
+                  Get Started Free
+                </Button>
+              </Link>
               <Button variant="outline" className="h-12 px-8 text-base font-medium rounded-md border-white/10 hover:bg-white/5 text-white bg-transparent w-full sm:w-auto">
                 Contact Sales
               </Button>

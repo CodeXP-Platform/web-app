@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { paths } from "@/lib/paths";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,19 +9,31 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { paths } from "@/lib/paths";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <div className="w-full max-w-md relative z-10">
       <Card className="bg-[#121214] border-white/10 shadow-2xl">
         <CardHeader className="space-y-2 text-center pb-6">
-          <CardTitle className="text-3xl font-bold tracking-tight text-white">Welcome back</CardTitle>
+          <CardTitle className="text-3xl font-bold tracking-tight text-white">Create an account</CardTitle>
           <CardDescription className="text-zinc-400">
-            Enter your credentials to access your workspace
+            Enter your details to start your journey
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <form className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-zinc-300" htmlFor="name">
+                Full Name
+              </label>
+              <Input 
+                id="name" 
+                type="text" 
+                placeholder="John Doe" 
+                className="h-11 bg-white/5 border-white/10 text-white placeholder:text-zinc-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500" 
+              />
+            </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-zinc-300" htmlFor="email">
                 Email
@@ -35,14 +46,9 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-zinc-300" htmlFor="password">
-                  Password
-                </label>
-                <Link href="#" className="text-xs font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
-                  Forgot password?
-                </Link>
-              </div>
+              <label className="text-sm font-medium text-zinc-300" htmlFor="password">
+                Password
+              </label>
               <Input 
                 id="password" 
                 type="password" 
@@ -52,7 +58,7 @@ export default function LoginPage() {
             </div>
             <Link href={paths.dashboard.root} className="block mt-2">
               <Button type="button" className="w-full h-11 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-md transition-colors text-sm">
-                Sign In
+                Sign Up
               </Button>
             </Link>
           </form>
@@ -86,9 +92,9 @@ export default function LoginPage() {
         </CardContent>
         <CardFooter className="flex justify-center border-t border-white/5 pt-6">
           <p className="text-sm text-zinc-400">
-            Don't have an account?{" "}
-            <Link href={paths.auth.register} className="font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
-              Sign up
+            Already have an account?{" "}
+            <Link href={paths.auth.login} className="font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
+              Sign in
             </Link>
           </p>
         </CardFooter>
