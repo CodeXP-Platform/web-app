@@ -2,6 +2,8 @@ import Link from "next/link";
 import { paths } from "@/lib/paths";
 import { Button } from "@/components/ui/button";
 import { SidebarNav } from "@/components/dasboard/sidebar-nav";
+import { SourceCodeIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 export default function DashboardLayout({
     children,
@@ -18,16 +20,7 @@ export default function DashboardLayout({
                             href={paths.home}
                             className="w-8 h-8 rounded bg-indigo-500 flex items-center justify-center hover:opacity-90 transition-opacity"
                         >
-                            <svg
-                                width="18"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                            >
-                                <path d="M4 17l6-6-6-6M12 19h8" />
-                            </svg>
+                            <HugeiconsIcon icon={SourceCodeIcon} />
                         </Link>
                         <div>
                             <h2 className="text-lg font-bold text-white tracking-tight leading-tight">
@@ -43,10 +36,6 @@ export default function DashboardLayout({
                 <SidebarNav />
 
                 <div className="p-4 space-y-4 border-t border-white/5">
-                    <Button className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold tracking-wide text-xs h-10 rounded-md">
-                        UPGRADE TO PRO
-                    </Button>
-
                     <div className="space-y-1 pb-2">
                         <Link
                             href="#"

@@ -187,6 +187,67 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Higher Education B2B Section */}
+        <div className="w-full mt-32 flex flex-col items-center">
+          <div className="text-center max-w-3xl mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+              CodeXP for{" "}
+              <AnimatedGradientText speed={1} colorFrom="#3b82f6" colorTo="#8b5cf6">
+                Higher Education.
+              </AnimatedGradientText>
+            </h2>
+            <p className="text-lg text-zinc-400">
+              Transform your computer science curriculum. Deploy a gamified, AI-driven software engineering lab that bridges the gap between theory and industry.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mb-12">
+            <Card className="bg-[#121214] border-white/5 p-8 flex flex-col hover:border-white/10 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-6 border border-blue-500/20">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">AI Teaching Assistant 24/7</h3>
+              <p className="text-sm text-zinc-400 leading-relaxed">
+                Our Socratic AI mentor guides students through complex architectural decisions and debugging without just handing them the answers, drastically reducing professor grading loads.
+              </p>
+            </Card>
+
+            <Card className="bg-[#121214] border-white/5 p-8 flex flex-col hover:border-white/10 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-6 border border-emerald-500/20">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Industry-Ready Architecture</h3>
+              <p className="text-sm text-zinc-400 leading-relaxed">
+                Move beyond console scripts. Students learn to build production-grade microservices, atomic state managers, and distributed systems directly within our sandboxed cloud environments.
+              </p>
+            </Card>
+
+            <Card className="bg-[#121214] border-white/5 p-8 flex flex-col hover:border-white/10 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center mb-6 border border-pink-500/20">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f472b6" strokeWidth="2"><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M7 4h10"></path><path d="M17 4v8a5 5 0 0 1-10 0V4"></path><path d="M4 4h3v3H4z"></path><path d="M17 4h3v3h-3z"></path></svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Gamified Retention</h3>
+              <p className="text-sm text-zinc-400 leading-relaxed">
+                Built-in XP systems, custom quests, and university-wide leaderboards keep engineering students highly engaged and coding consistently every single day.
+              </p>
+            </Card>
+
+            <Card className="bg-[#121214] border-white/5 p-8 flex flex-col hover:border-white/10 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center mb-6 border border-orange-500/20">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb923c" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Zero Configuration Deployments</h3>
+              <p className="text-sm text-zinc-400 leading-relaxed">
+                Say goodbye to "it works on my machine" issues. Our cloud instances provision instantly, allowing students to start coding on day one without complex local setups.
+              </p>
+            </Card>
+          </div>
+          
+          <Button className="h-12 px-8 text-base font-semibold rounded-md bg-white text-black hover:bg-zinc-200">
+            Request University Demo
+          </Button>
+        </div>
+
         {/* Testimonials Section */}
         <div className="w-full mt-32 mb-32 flex flex-col items-center">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-16 text-center">
