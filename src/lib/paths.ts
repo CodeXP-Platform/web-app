@@ -6,5 +6,7 @@ export const paths = {
   },
   dashboard: {
     root: "/dashboard",
+    challenges: "/dashboard/challenges",
+    profile: "/dashboard/profile",
   },
 } as const;
