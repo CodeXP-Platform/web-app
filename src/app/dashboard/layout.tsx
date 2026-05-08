@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { SidebarNav } from "@/components/dasboard/sidebar-nav";
 import { SourceCodeIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { SidebarUserLevel } from "@/components/dashboard/sidebar-user-level";
+import { LogoutButton } from "@/components/dashboard/logout-button";
+import { AuthGuard } from "@/components/dashboard/auth-guard";
 
 export default function DashboardLayout({
     children,
@@ -11,6 +14,7 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     return (
+        <AuthGuard>
         <div className="flex h-screen overflow-hidden bg-[#0c0c0e] text-zinc-100 font-sans selection:bg-indigo-500/30">
             {/* Sidebar */}
             <aside className="w-64 bg-[#121214] border-r border-white/5 flex flex-col shrink-0">
@@ -26,9 +30,7 @@ export default function DashboardLayout({
                             <h2 className="text-lg font-bold text-white tracking-tight leading-tight">
                                 CodeXP
                             </h2>
-                            <p className="text-[10px] text-zinc-500 font-medium tracking-widest uppercase">
-                                LEVEL 42 OPERATOR
-                            </p>
+                            <SidebarUserLevel />
                         </div>
                     </div>
                 </div>
@@ -57,6 +59,7 @@ export default function DashboardLayout({
                             </svg>
                             SUPPORT
                         </Link>
+                        <LogoutButton />
                     </div>
                 </div>
             </aside>
@@ -166,5 +169,6 @@ export default function DashboardLayout({
                 <div className="flex-1 overflow-y-auto p-8">{children}</div>
             </main>
         </div>
+        </AuthGuard>
     );
 }

@@ -3,114 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { UserLevelBanner } from "@/components/dashboard/user-level-banner";
+import { UserStatsCards } from "@/components/dashboard/user-stats-cards";
 
 export default function DashboardPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-8">
             {/* Top Section */}
             <div className="grid grid-cols-3 gap-6">
-                {/* Active Path Banner */}
-                <div className="col-span-2 relative overflow-hidden rounded-xl bg-[#121214] border border-white/5 p-8 flex flex-col justify-between min-h-[240px]">
-                    {/* Abstract background graphics */}
-                    <div className="absolute inset-0 pointer-events-none opacity-50">
-                        <div className="absolute right-0 top-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,rgba(129,140,248,0.15)_0%,transparent_50%)]"></div>
-                        {/* Simple lines background */}
-                        <div
-                            className="absolute inset-0"
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.02) 75%, transparent 75%, transparent)",
-                                backgroundSize: "100px 100px",
-                            }}
-                        ></div>
-                    </div>
-
-                    <div className="relative z-10">
-                        <p className="text-indigo-400 text-[10px] font-bold tracking-widest uppercase mb-3">
-                            ACTIVE PATH
-                        </p>
-                        <h1 className="text-3xl font-bold text-white mb-3 tracking-tight">
-                            Full-Stack Architect
-                        </h1>
-                        <p className="text-zinc-400 text-sm max-w-sm leading-relaxed">
-                            Master the cosmic architecture of modern web systems
-                            from reactive kernels to high-availability clusters.
-                        </p>
-                    </div>
-
-                    <div className="relative z-10 mt-8">
-                        <div className="flex items-end justify-between mb-3">
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-3xl font-bold text-indigo-400 leading-none">
-                                    64%
-                                </span>
-                                <span className="text-zinc-400 text-xs">
-                                    to Level 43
-                                </span>
-                            </div>
-                            <span className="text-zinc-400 text-xs">
-                                Next: Distributed Locking Systems
-                            </span>
-                        </div>
-                        <div className="w-full bg-white/5 rounded-full h-2 overflow-hidden flex">
-                            <div
-                                className="bg-indigo-400 h-full rounded-r-full shadow-[0_0_10px_rgba(129,140,248,0.5)] relative"
-                                style={{ width: "64%" }}
-                            >
-                                <div className="absolute inset-0 bg-white/20 w-full"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Stats Cards */}
-                <div className="col-span-1 flex flex-col gap-6">
-                    <Card className="flex-1 bg-[#121214] border-white/5 flex items-center justify-between p-6">
-                        <div>
-                            <p className="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-2">
-                                GLOBAL RANK
-                            </p>
-                            <p className="text-2xl font-bold text-white">
-                                #1,402
-                            </p>
-                        </div>
-                        <div className="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center border border-pink-500/20">
-                            <svg
-                                width="18"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="#ec4899"
-                                strokeWidth="2"
-                            >
-                                <circle cx="12" cy="8" r="7"></circle>
-                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                            </svg>
-                        </div>
-                    </Card>
-                    <Card className="flex-1 bg-[#121214] border-white/5 flex items-center justify-between p-6">
-                        <div>
-                            <p className="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-2">
-                                TOTAL XP
-                            </p>
-                            <p className="text-2xl font-bold text-white">
-                                84,200
-                            </p>
-                        </div>
-                        <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
-                            <svg
-                                width="18"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="#818cf8"
-                                strokeWidth="2"
-                            >
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                            </svg>
-                        </div>
-                    </Card>
-                </div>
+                <UserLevelBanner />
+                <UserStatsCards />
             </div>
 
             {/* Challenges Section */}

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nanak\\\\Dev\\\\emergentes\\\\web-app\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(bunx tsc *)"
+    ]
+  }
+}

@@ -3,6 +3,7 @@ export const paths = {
   auth: {
     login: "/auth/login",
     register: "/auth/register",
+    callbackGithub: "/auth/callback/github",
   },
   dashboard: {
     root: "/dashboard",
