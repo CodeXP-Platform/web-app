@@ -86,3 +86,8 @@ export interface OAuthBody {
 export interface ExchangeTemporalTokenBody {
   temporalToken: string;
 }
+
+export interface UpdateProfileRequest {
+  nickname?: string;
+  picture?: string;
+}

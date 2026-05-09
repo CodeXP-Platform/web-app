@@ -8,6 +8,7 @@ interface AuthState {
   user: User | null;
   _hasHydrated: boolean;
   setAuth: (response: AuthResponse) => void;
+  setUser: (user: User) => void;
   clearAuth: () => void;
   setHasHydrated: (value: boolean) => void;
 }
@@ -25,6 +26,7 @@ const useAuth = create<AuthState>()(
           refreshToken: response.refreshToken,
           user: response.user,
         }),
+      setUser: (user: User) => set({ user }),
       clearAuth: () =>
         set({ accessToken: null, refreshToken: null, user: null }),
       setHasHydrated: (value: boolean) => set({ _hasHydrated: value }),

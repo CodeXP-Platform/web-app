@@ -8,6 +8,8 @@ import type {
   SignInBody,
   SignUpBody,
   TemporalTokenResponse,
+  UpdateProfileRequest,
+  User,
 } from "./types";
 
 export class IamController {
@@ -55,6 +57,16 @@ export class IamController {
     const response = await http.post<TemporalTokenResponse>(
       "/iam/users/me/temporal-token",
     );
+    return response.data;
+  }
+
+  public static async getMyProfile(): Promise<User> {
+    const response = await http.get<User>("/iam/users/me");
+    return response.data;
+  }
+
+  public static async updateMyProfile(body: UpdateProfileRequest): Promise<User> {
+    const response = await http.put<User>("/iam/users/me", body);
     return response.data;
   }
 }

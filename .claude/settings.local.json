@@ -3,7 +3,11 @@
     "allow": [
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nanak\\\\Dev\\\\emergentes\\\\web-app\" -Force)",
       "Bash(Select-Object Name, PSIsContainer)",
-      "Bash(bunx tsc *)"
+      "Bash(bunx tsc *)",
+      "WebFetch(domain:localhost)",
+      "Bash(curl -s -H \"Accept: application/json\" http://localhost:8761/eureka/apps)",
+      "Bash(python -m json.tool)",
+      "Bash(curl *)"
     ]
   }
 }
