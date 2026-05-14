@@ -39,10 +39,10 @@ export function SidebarNav() {
                     <Link
                         key={item.href}
                         href={item.href}
-                        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium border-l-2 transition-colors ${
+                        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                             isActive
                                 ? "text-indigo-400"
-                                : "text-zinc-400 hover:text-zinc-200 hover:bg-white/5 border-transparent"
+                                : "text-zinc-400 hover:text-zinc-200 hover:bg-white/5"
                         }`}
                     >
                         <HugeiconsIcon icon={item.icon} />

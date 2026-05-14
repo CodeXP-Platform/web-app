@@ -1,8 +1,10 @@
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserLevelBanner } from "@/components/dashboard/user-level-banner";
 import { UserStatsCards } from "@/components/dashboard/user-stats-cards";
 import { TrendingChallenges } from "@/components/dashboard/trending-challenges";
+import { paths } from "@/lib/paths";
 
 export default function DashboardPage() {
     return (
@@ -24,7 +26,10 @@ export default function DashboardPage() {
                             <TabsTrigger value="mypaths">My Paths</TabsTrigger>
                         </TabsList>
                     </Tabs>
-                    <button className="text-[10px] font-bold text-zinc-500 hover:text-white uppercase tracking-widest flex items-center gap-1.5 pb-2 transition-colors">
+                    <Link
+                        href={paths.dashboard.challenges}
+                        className="text-[10px] font-bold text-zinc-500 hover:text-white uppercase tracking-widest flex items-center gap-1.5 pb-2 transition-colors"
+                    >
                         VIEW ALL CHALLENGES{" "}
                         <svg
                             width="14"
@@ -36,7 +41,7 @@ export default function DashboardPage() {
                         >
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
-                    </button>
+                    </Link>
                 </div>
 
                 <TrendingChallenges />

@@ -8,6 +8,7 @@ export const paths = {
   dashboard: {
     root: "/dashboard",
     challenges: "/dashboard/challenges",
+    challengeDetail: (id: string) => `/dashboard/challenges/${id}`,
     profile: "/dashboard/profile",
     profileEdit: "/dashboard/profile/edit",
     support: "/dashboard/support",
