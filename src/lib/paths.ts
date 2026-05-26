@@ -12,5 +12,10 @@ export const paths = {
     profile: "/dashboard/profile",
     profileEdit: "/dashboard/profile/edit",
     support: "/dashboard/support",
+    teacher: {
+      root: "/dashboard/teacher",
+      newChallenge: "/dashboard/teacher/challenges/new",
+      challengeManage: (id: string) => `/dashboard/teacher/challenges/${id}`,
+    },
   },
 } as const;
