@@ -10,11 +10,11 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { MonacoEditor } from "@/components/teacher/monaco-editor";
 import { TestCaseManager } from "@/components/teacher/test-case-manager";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { SUPPORTED_LANGUAGES } from "@/lib/roles";
 import { ChallengesController } from "@/services/challenges/controller";
 import type { CodeTemplateResponse } from "@/services/challenges/types";
@@ -27,8 +27,14 @@ function readError(err: unknown, fallback: string): string {
   return fallback;
 }
 
-const CODE_CN =
-  "min-h-40 bg-[#0a0a0c] border-white/10 text-white placeholder:text-zinc-600 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 font-mono text-xs";
+/** Maps the app's language names to Monaco language identifiers. */
+const MONACO_LANGUAGE: Record<string, string> = {
+  python: "python",
+  javascript: "javascript",
+  java: "java",
+  cpp: "cpp",
+};
+
 const INPUT_CN =
   "h-10 bg-[#0a0a0c] border-white/10 text-white placeholder:text-zinc-600 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 font-mono text-sm";
 
@@ -65,6 +71,9 @@ function LanguagePicker({
   );
 }
 
+// ---------------------------------------------------------------------------
+// TemplateCard — single saved code template with inline editing
+// ---------------------------------------------------------------------------
 function TemplateCard({
   challengeId,
   template,
@@ -126,9 +135,12 @@ function TemplateCard({
     }
   }
 
+  const monacoLang = MONACO_LANGUAGE[language] ?? "plaintext";
+
   return (
     <div className="bg-[#121214] border border-white/5 rounded-xl overflow-hidden">
-      <div className="flex items-center justify-between gap-3 p-4 border-b border-white/5">
+      {/* Card header */}
+      <div className="flex items-center justify-between gap-3 px-5 py-3.5 border-b border-white/5">
         {editing ? (
           <LanguagePicker
             value={language}
@@ -149,7 +161,7 @@ function TemplateCard({
           </div>
         )}
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0">
           {editing ? (
             <>
               <Button
@@ -193,10 +205,11 @@ function TemplateCard({
         </div>
       </div>
 
-      <div className="p-4 space-y-4">
+      {/* Card body */}
+      <div className="p-5 space-y-5">
         {editing && (
           <div className="space-y-1.5">
-            <span className="text-[9px] uppercase tracking-wider text-zinc-600">
+            <span className="text-[10px] uppercase tracking-wider text-zinc-600 font-semibold">
               Entry function name
             </span>
             <Input
@@ -208,18 +221,30 @@ function TemplateCard({
           </div>
         )}
 
+        {/* Template code — Monaco in edit mode, <pre> in read mode */}
         <div className="space-y-1.5">
-          <span className="text-[9px] uppercase tracking-wider text-zinc-600">
-            Template code
-          </span>
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] uppercase tracking-wider text-zinc-600 font-semibold">
+              Template code
+            </span>
+            {!editing && (
+              <span className="text-[10px] font-mono text-zinc-700 uppercase tracking-wider">
+                {template.language}
+              </span>
+            )}
+          </div>
+
           {editing ? (
-            <Textarea
+            <MonacoEditor
+              language={monacoLang}
               value={templateCode}
-              onChange={(e) => setTemplateCode(e.target.value)}
-              className={CODE_CN}
+              onChange={setTemplateCode}
+              height={260}
+              wordWrap="off"
+              lineNumbers
             />
           ) : (
-            <pre className="bg-[#0a0a0c] border border-white/5 rounded-lg p-4 overflow-x-auto text-xs font-mono text-zinc-300 whitespace-pre-wrap">
+            <pre className="bg-[#0a0a0c] border border-white/5 rounded-lg px-5 py-4 overflow-x-auto text-xs font-mono text-zinc-300 whitespace-pre-wrap leading-relaxed">
               {template.templateCode}
             </pre>
           )}
@@ -227,7 +252,7 @@ function TemplateCard({
 
         {error && <p className="text-xs text-red-400">{error}</p>}
 
-        <div className="pt-2 border-t border-white/5">
+        <div className="pt-3 border-t border-white/5">
           <TestCaseManager
             challengeId={challengeId}
             codeTemplateId={template.codeTemplateId}
@@ -238,6 +263,9 @@ function TemplateCard({
   );
 }
 
+// ---------------------------------------------------------------------------
+// CodeTemplateManager — list + add form
+// ---------------------------------------------------------------------------
 export function CodeTemplateManager({
   challengeId,
   onCountChange,
@@ -306,11 +334,7 @@ export function CodeTemplateManager({
     try {
       const created = await ChallengesController.createCodeTemplate(
         challengeId,
-        {
-          language,
-          entryFunctionName,
-          templateCode,
-        },
+        { language, entryFunctionName, templateCode },
       );
       setTemplates((prev) => {
         const next = [...prev, created];
@@ -345,6 +369,8 @@ export function CodeTemplateManager({
     return <p className="text-sm text-zinc-500">Loading code templates…</p>;
   }
 
+  const addMonacoLang = MONACO_LANGUAGE[language] ?? "plaintext";
+
   return (
     <div className="space-y-5">
       {error && <p className="text-sm text-red-400">{error}</p>}
@@ -368,10 +394,17 @@ export function CodeTemplateManager({
         ))}
       </div>
 
+      {/* Add form */}
       {showAdd ? (
-        <div className="bg-[#121214] border border-dashed border-white/10 rounded-xl p-4 space-y-4">
-          <div className="space-y-1.5">
-            <span className="text-[9px] uppercase tracking-wider text-zinc-600">
+        <div className="bg-[#121214] border border-dashed border-white/10 rounded-xl p-5 space-y-5">
+          {/* Section heading */}
+          <p className="text-[10px] uppercase tracking-widest text-zinc-600 font-semibold">
+            New template
+          </p>
+
+          {/* Language picker */}
+          <div className="space-y-2">
+            <span className="text-[10px] uppercase tracking-wider text-zinc-600 font-semibold">
               Language
             </span>
             <LanguagePicker
@@ -380,8 +413,10 @@ export function CodeTemplateManager({
               disabledLanguages={usedLanguages}
             />
           </div>
+
+          {/* Entry function name */}
           <div className="space-y-1.5">
-            <span className="text-[9px] uppercase tracking-wider text-zinc-600">
+            <span className="text-[10px] uppercase tracking-wider text-zinc-600 font-semibold">
               Entry function name
             </span>
             <Input
@@ -391,15 +426,19 @@ export function CodeTemplateManager({
               className={INPUT_CN}
             />
           </div>
+
+          {/* Template code — Monaco editor */}
           <div className="space-y-1.5">
-            <span className="text-[9px] uppercase tracking-wider text-zinc-600">
+            <span className="text-[10px] uppercase tracking-wider text-zinc-600 font-semibold">
               Template code
             </span>
-            <Textarea
+            <MonacoEditor
+              language={addMonacoLang}
               value={templateCode}
-              onChange={(e) => setTemplateCode(e.target.value)}
-              placeholder={"def twoSum(nums, target):\n    pass"}
-              className={CODE_CN}
+              onChange={setTemplateCode}
+              height={220}
+              wordWrap="off"
+              lineNumbers
             />
           </div>
 

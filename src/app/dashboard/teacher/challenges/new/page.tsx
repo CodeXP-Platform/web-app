@@ -40,8 +40,9 @@ export default function NewChallengePage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
-      <div className="space-y-4">
+    <div className="max-w-6xl mx-auto space-y-8">
+      {/* Page header */}
+      <div className="space-y-3">
         <Link
           href={paths.dashboard.teacher.root}
           className="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors font-medium uppercase tracking-wider"
@@ -50,17 +51,18 @@ export default function NewChallengePage() {
           My Challenges
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight mb-2">
+          <h1 className="text-3xl font-bold text-white tracking-tight mb-1">
             New Challenge
           </h1>
-          <p className="text-zinc-400 text-sm">
+          <p className="text-zinc-500 text-sm">
             Define the basics. After creating it you&apos;ll add code templates
             and test cases, then publish it for students.
           </p>
         </div>
       </div>
 
-      <div className="bg-[#121214] border border-white/5 rounded-xl p-6">
+      {/* Form — no card wrapper; the form handles its own two-column layout */}
+      <div className="bg-[#121214] border border-white/5 rounded-2xl p-8">
         <ChallengeMetaForm
           submitLabel="Create Challenge"
           pendingLabel="Creating…"

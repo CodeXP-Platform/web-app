@@ -123,7 +123,7 @@ export default function ManageChallengePage({
 
   if (error || !challenge) {
     return (
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <Link
           href={paths.dashboard.teacher.root}
           className="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors font-medium uppercase tracking-wider mb-6"
@@ -141,7 +141,7 @@ export default function ManageChallengePage({
   const diff = getDifficulty(challenge.difficulty);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6">
       <Link
         href={paths.dashboard.teacher.root}
         className="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors font-medium uppercase tracking-wider"
@@ -181,8 +181,9 @@ export default function ManageChallengePage({
           <TabsTrigger value="publish">Publish</TabsTrigger>
         </TabsList>
 
+        {/* Details tab — two-column meta form */}
         <TabsContent value="details" className="pt-6">
-          <div className="bg-[#121214] border border-white/5 rounded-xl p-6">
+          <div className="bg-[#121214] border border-white/5 rounded-2xl p-8">
             <ChallengeMetaForm
               key={challenge.updatedAt}
               initialValues={challenge}
@@ -206,6 +207,7 @@ export default function ManageChallengePage({
           </div>
         </TabsContent>
 
+        {/* Templates tab */}
         <TabsContent value="templates" className="pt-6">
           <CodeTemplateManager
             challengeId={id}
@@ -213,8 +215,9 @@ export default function ManageChallengePage({
           />
         </TabsContent>
 
+        {/* Publish tab */}
         <TabsContent value="publish" className="pt-6">
-          <div className="bg-[#121214] border border-white/5 rounded-xl p-6 space-y-5">
+          <div className="bg-[#121214] border border-white/5 rounded-2xl p-8 space-y-5">
             <div className="flex items-start gap-3">
               <div
                 className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
@@ -286,14 +289,14 @@ export default function ManageChallengePage({
 
 function ManageSkeleton() {
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6">
       <Skeleton className="h-4 w-28" />
       <Skeleton className="h-9 w-1/2" />
       <Skeleton className="h-9 w-full max-w-md" />
-      <div className="bg-[#121214] border border-white/5 rounded-xl p-6 space-y-4">
+      <div className="bg-[#121214] border border-white/5 rounded-2xl p-8 space-y-4">
         <Skeleton className="h-4 w-20" />
         <Skeleton className="h-11 w-full" />
-        <Skeleton className="h-32 w-full" />
+        <Skeleton className="h-64 w-full" />
         <Skeleton className="h-11 w-40" />
       </div>
     </div>

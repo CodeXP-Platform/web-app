@@ -3,6 +3,7 @@
 import {
   Add01Icon,
   Delete02Icon,
+  EyeIcon,
   ViewOffIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -170,7 +171,10 @@ export function TestCaseManager({
                       : "bg-white/[0.03] text-zinc-400 border-white/5 hover:bg-white/5"
                   }`}
                 >
-                  <HugeiconsIcon icon={ViewOffIcon} size={12} />
+                  <HugeiconsIcon
+                    icon={tc.isHidden ? ViewOffIcon : EyeIcon}
+                    size={12}
+                  />
                   {tc.isHidden ? "Hidden" : "Visible"}
                 </button>
                 <button
