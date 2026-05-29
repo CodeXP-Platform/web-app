@@ -108,4 +108,6 @@ export interface ChallengesPageParams {
   size?: number;
   sort?: string[];
   title?: string;
+  difficulty?: string;
+  language?: string;
 }
