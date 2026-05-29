@@ -6,6 +6,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { SidebarUserLevel } from "@/components/dashboard/sidebar-user-level";
 import { LogoutButton } from "@/components/dashboard/logout-button";
 import { AuthGuard } from "@/components/dashboard/auth-guard";
+import { DashboardHeaderSearch } from "@/components/dashboard/dashboard-header-search";
+import { Suspense } from "react";
 
 export default function DashboardLayout({
     children,
@@ -72,58 +74,10 @@ export default function DashboardLayout({
                 <main className="flex-1 flex flex-col min-w-0 bg-[#0a0a0c]">
                     {/* Top Navbar */}
                     <header className="h-16 border-b border-white/5 flex items-center justify-between px-8 shrink-0 bg-[#0a0a0c]">
-                        <div className="flex items-center flex-1 max-w-2xl gap-4">
-                            <div className="relative w-full max-w-md flex items-center">
-                                <svg
-                                    className="absolute left-3 w-4 h-4 text-zinc-500"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                >
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <line
-                                        x1="21"
-                                        y1="21"
-                                        x2="16.65"
-                                        y2="16.65"
-                                    ></line>
-                                </svg>
-                                <input
-                                    type="text"
-                                    placeholder="Search challenges, paths, or users..."
-                                    className="w-full bg-[#121214] border border-white/5 rounded-md h-9 pl-10 pr-4 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-indigo-500/50"
-                                />
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                <button className="flex items-center gap-2 text-xs font-medium text-zinc-400 bg-[#121214] border border-white/5 rounded-md px-3 h-9 hover:bg-white/5 transition-colors">
-                                    LANGUAGE{" "}
-                                    <svg
-                                        width="12"
-                                        height="12"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </button>
-                                <button className="flex items-center gap-2 text-xs font-medium text-zinc-400 bg-[#121214] border border-white/5 rounded-md px-3 h-9 hover:bg-white/5 transition-colors">
-                                    DIFFICULTY{" "}
-                                    <svg
-                                        width="12"
-                                        height="12"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </button>
-                            </div>
+                        <div className="flex-1">
+                            <Suspense fallback={null}>
+                                <DashboardHeaderSearch />
+                            </Suspense>
                         </div>
 
                         <div className="flex items-center gap-5">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -9,6 +10,11 @@ import { ChallengesController } from "@/services/challenges/controller";
 import type { ChallengeResponse } from "@/services/challenges/types";
 
 export default function ChallengesPage() {
+  const searchParams = useSearchParams();
+  const title      = searchParams.get("title")      ?? undefined;
+  const difficulty = searchParams.get("difficulty") ?? undefined;
+  const language   = searchParams.get("language")   ?? undefined;
+
   const [challenges, setChallenges] = useState<ChallengeResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -16,11 +22,15 @@ export default function ChallengesPage() {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
+    setPage(0);
+  }, [title, difficulty, language]);
+
+  useEffect(() => {
     async function load() {
       setLoading(true);
       setError(null);
       try {
-        const data = await ChallengesController.getChallenges({ page, size: 9 });
+        const data = await ChallengesController.getChallenges({ page, size: 9, title, difficulty, language });
         setChallenges(data.content);
         setTotalPages(data.totalPages);
       } catch {
@@ -30,20 +40,13 @@ export default function ChallengesPage() {
       }
     }
     load();
-  }, [page]);
+  }, [page, title, difficulty, language]);
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight mb-2">Challenge Catalog</h1>
-          <p className="text-zinc-400 text-sm">Explore and conquer challenges to earn XP and level up.</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" className="h-9 bg-white/5 border-white/10 text-zinc-300 text-xs">All</Button>
-          <Button variant="outline" className="h-9 bg-white/5 border-white/10 text-zinc-300 text-xs">Easy</Button>
-          <Button variant="outline" className="h-9 bg-white/5 border-white/10 text-zinc-300 text-xs">Hard</Button>
-        </div>
+      <div>
+        <h1 className="text-3xl font-bold text-white tracking-tight mb-2">Challenge Catalog</h1>
+        <p className="text-zinc-400 text-sm">Explore and conquer challenges to earn XP and level up.</p>
       </div>
 
       {error && (
@@ -66,6 +69,23 @@ export default function ChallengesPage() {
               <ChallengeCard key={challenge.challengeId} challenge={challenge} index={i} />
             ))}
       </div>
+
+      {!loading && challenges.length === 0 && !error && (
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <div className="w-16 h-16 rounded-2xl bg-[#121214] border border-white/5 flex items-center justify-center">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <line x1="11" y1="8" x2="11" y2="14" />
+              <line x1="8" y1="11" x2="14" y2="11" />
+            </svg>
+          </div>
+          <div className="text-center space-y-1">
+            <p className="text-zinc-200 text-sm font-medium">No challenges match your search</p>
+            <p className="text-zinc-600 text-xs">Try adjusting your filters or search term</p>
+          </div>
+        </div>
+      )}
 
       {!loading && totalPages > 1 && (
         <div className="flex items-center justify-center gap-2 pt-4">

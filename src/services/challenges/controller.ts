@@ -18,9 +18,16 @@ import type {
 
 export class ChallengesController {
   public static async getChallenges(params: ChallengesPageParams = {}): Promise<PageChallengeResponse> {
-    const { page = 0, size = 12, sort, title } = params;
+    const { page = 0, size = 12, sort, title, difficulty, language } = params;
     const response = await http.get<PageChallengeResponse>("/challenges", {
-      params: { page, size, ...(sort && { sort }), ...(title && { title }) },
+      params: {
+        page,
+        size,
+        ...(sort && { sort }),
+        ...(title && { title }),
+        ...(difficulty && { difficulty }),
+        ...(language && { language }),
+      },
     });
     return response.data;
   }
