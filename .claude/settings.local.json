@@ -10,7 +10,19 @@
       "Bash(curl *)",
       "Bash(bun add *)",
       "Bash(bun run *)",
-      "Bash(bun x *)"
+      "Bash(bun x *)",
+      "Bash(npx next *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(git merge *)",
+      "Bash(git stash *)",
+      "Bash(git restore *)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "Azure MCP Server"
+  ]
 }
