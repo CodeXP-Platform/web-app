@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,7 +9,7 @@ import { ChallengeCard } from "@/components/challenges/challenge-card";
 import { ChallengesController } from "@/services/challenges/controller";
 import type { ChallengeResponse } from "@/services/challenges/types";
 
-export default function ChallengesPage() {
+function ChallengesContent() {
   const searchParams = useSearchParams();
   const title      = searchParams.get("title")      ?? undefined;
   const difficulty = searchParams.get("difficulty") ?? undefined;
@@ -111,5 +111,13 @@ export default function ChallengesPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ChallengesPage() {
+  return (
+    <Suspense fallback={null}>
+      <ChallengesContent />
+    </Suspense>
   );
 }

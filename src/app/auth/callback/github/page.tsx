@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { IamController } from "@/services/iam/controller";
@@ -8,7 +8,7 @@ import useAuth from "@/hooks/use-auth";
 import { paths } from "@/lib/paths";
 import type { ErrorResponse } from "@/services/iam/types";
 
-export default function GitHubCallbackPage() {
+function GitHubCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const setAuth = useAuth((s) => s.setAuth);
@@ -74,5 +74,13 @@ export default function GitHubCallbackPage() {
         </p>
       )}
     </div>
+  );
+}
+
+export default function GitHubCallbackPage() {
+  return (
+    <Suspense fallback={null}>
+      <GitHubCallbackContent />
+    </Suspense>
   );
 }
