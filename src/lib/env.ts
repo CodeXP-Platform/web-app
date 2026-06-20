@@ -1,5 +1,5 @@
 export const env = {
-    apiUrl: process.env.NEXT_PUBLIC_API_URL || "/backend",
+    apiUrl: process.env.NEXT_PUBLIC_API_URL || "/api/v1",
     googleClientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "",
     githubClientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID || "",
 };
